@@ -1,0 +1,20 @@
+{
+  "name": "@praetorius/visual-regression-viewer",
+  "version": "0.1.0",
+  "description": "A local viewer for visual regression report JSON files.",
+  "bin": "server.js",
+  "files": [
+    "server.js",
+    "public"
+  ],
+  "scripts": {
+    "check": "node --check server.js && node --check public/app.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "UNLICENSED"
+}

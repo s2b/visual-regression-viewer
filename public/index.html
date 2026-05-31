@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visual Regression Report</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="listPane" aria-label="Test results">
+        <header class="sidebarHeader">
+          <div>
+            <h1>Visual Regression Report</h1>
+          </div>
+          <div class="summary" id="summary" aria-label="Acceptance summary"></div>
+        </header>
+        <div class="controls">
+          <div class="filterGroup reviewNav" role="tablist" aria-label="Review state filter">
+            <button class="reviewButton" data-review-state="all" type="button">All</button>
+            <button class="reviewButton" data-review-state="accepted" type="button">Accepted</button>
+            <button class="reviewButton isActive" data-review-state="open" type="button">Needs review</button>
+          </div>
+        </div>
+        <div class="listMeta">
+          <div class="statusFilterRow">
+            <label class="statusFilter">
+              <span class="filterLabelText">Status</span>
+              <select id="statusSelect">
+                <option value="all">All</option>
+                <option value="failed">Failed</option>
+                <option value="passed">Passed</option>
+              </select>
+            </label>
+          </div>
+          <div class="sitemapFilterRow">
+            <label class="sitemapLabel">
+              <span class="filterLabelText">Sitemap</span>
+              <select id="sitemapSelect">
+                <option value="all">All sitemaps</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="results" id="results"></div>
+        <div class="resultToolbar">
+          <div class="resultCount" id="resultCount"></div>
+          <button class="bulkButton" id="acceptPassedButton" type="button">Accept passed</button>
+          <label class="sortLabel">
+            Sort
+            <select id="sortSelect">
+              <option value="fileOrder">Report order</option>
+              <option value="pixelsDifferent">Diff (px)</option>
+              <option value="percentDifferent">Diff (%)</option>
+              <option value="time">Time</option>
+              <option value="retries">Retries</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="detailPane" aria-label="Selected test details">
+        <div class="emptyState" id="initialState">Select a result to inspect screenshots and metadata.</div>
+        <article class="detail" id="detail" hidden>
+          <div class="detailHeader">
+            <div class="detailHeading">
+              <div class="detailTitle" id="detailTitle"></div>
+            </div>
+            <div class="detailInfo">
+              <div class="detailMeta" id="detailMeta"></div>
+            </div>
+            <div class="detailActions">
+              <button class="secondaryAction" id="scheduleButton" type="button">Schedule rerun <kbd class="shortcutKey">r</kbd></button>
+              <label class="acceptedToggle" id="acceptedControl">
+                <input id="acceptedToggle" type="checkbox">
+                <span>Accept <kbd class="shortcutKey">a</kbd></span>
+              </label>
+            </div>
+            <div class="urlBlock">
+              <div>
+                <span class="detailUrlLabel">Subject</span>
+                <a id="subjectUrl" href="#" target="_blank" rel="noreferrer"></a>
+              </div>
+              <div class="referenceUrlRow">
+                <span class="detailUrlLabel">Reference</span>
+                <a id="referenceUrl" href="#" target="_blank" rel="noreferrer"></a>
+                <label class="updateReferenceToggle">
+                  <input id="updateReferenceToggle" type="checkbox">
+                  Update reference
+                </label>
+              </div>
+              <div id="sitemapSources" class="sitemapSources"></div>
+            </div>
+          </div>
+
+          <div class="viewControls" id="viewControls">
+            <div class="filterGroup viewModeNav" role="tablist" aria-label="Comparison view">
+              <button class="viewButton isActive" data-view="difference" type="button">Difference <kbd class="shortcutKey">1</kbd></button>
+              <button class="viewButton" data-view="side" type="button">Side by side <kbd class="shortcutKey">2</kbd></button>
+              <button class="viewButton" data-view="subject" type="button">Subject <kbd class="shortcutKey">3</kbd></button>
+              <button class="viewButton" data-view="reference" type="button">Reference <kbd class="shortcutKey">4</kbd></button>
+            </div>
+            <div class="displayOptions">
+              <label class="minimapToggle" id="minimapToggle">
+                <input id="showMinimap" type="checkbox" checked>
+                Minimap
+              </label>
+            </div>
+          </div>
+
+          <div class="imageArea" id="imageArea"></div>
+          <div class="emptyState" id="metadataOnly" hidden>No screenshots are available for this result.</div>
+        </article>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
