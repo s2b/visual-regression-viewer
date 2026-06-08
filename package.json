@@ -2,16 +2,18 @@
   "name": "@praetorius/visual-regression-viewer",
   "version": "0.1.0",
   "description": "A local viewer for visual regression report JSON files.",
-  "bin": "server.js",
+  "type": "module",
+  "bin": "viewer.js",
   "files": [
-    "server.js",
+    "viewer.js",
+    "src",
     "public"
   ],
   "scripts": {
-    "check": "node --check server.js && node --check public/app.js"
+    "check": "node --check viewer.js && node --check src/browser.js && node --check src/cli.js && node --check src/server.js && node --check src/server/errors.js && node --check src/server/report.js && node --check src/server/responses.js && node --check src/server/routing.js && node --check src/server/static.js && node --check public/app.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "publishConfig": {
     "access": "public"
