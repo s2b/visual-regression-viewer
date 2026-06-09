@@ -10,7 +10,7 @@
     "public"
   ],
   "scripts": {
-    "check": "node --check viewer.js && node --check src/browser.js && node --check src/cli.js && node --check src/server.js && node --check src/server/errors.js && node --check src/server/report.js && node --check src/server/responses.js && node --check src/server/routing.js && node --check src/server/static.js && node --check public/app.js"
+    "check": "oxlint --deny-warnings viewer.js src public"
   },
   "engines": {
     "node": ">=22"
@@ -18,5 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "oxlint": "^1.69.0"
+  }
 }

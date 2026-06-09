@@ -13,7 +13,7 @@ const state = {
   showMinimap: true,
 };
 
-let activeScreenshotPreloads = [];
+let _activeScreenshotPreloads = [];
 
 const els = {
   summary: document.querySelector("#summary"),
@@ -134,7 +134,7 @@ function hostFromUrl(value) {
 }
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>\"]/g, (char) => ({
+  return String(value).replace(/[&<>"]/g, (char) => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
@@ -190,11 +190,11 @@ function screenshotUrl(file) {
 }
 
 function preloadSelectedScreenshots(test) {
-  activeScreenshotPreloads = [];
+  _activeScreenshotPreloads = [];
   if (!test) return;
 
   const urls = [screenshotUrl(test.screenshotSubject), screenshotUrl(test.screenshotReference)].filter(Boolean);
-  activeScreenshotPreloads = urls.map((url) => {
+  _activeScreenshotPreloads = urls.map((url) => {
     const image = new Image();
     image.decoding = "async";
     image.src = url;
@@ -832,15 +832,6 @@ function handleKeyboardShortcuts(event) {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
 
   const target = event.target;
-  const isActionShortcut =
-    event.key === "a" ||
-    event.key === "A" ||
-    event.key === "r" ||
-    event.key === "R" ||
-    event.key === "1" ||
-    event.key === "2" ||
-    event.key === "3" ||
-    event.key === "4";
   const isEditable =
     target instanceof HTMLInputElement ||
     target instanceof HTMLTextAreaElement ||
