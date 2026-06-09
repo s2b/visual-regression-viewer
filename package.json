@@ -10,7 +10,7 @@
     "public"
   ],
   "scripts": {
-    "check": "oxlint --deny-warnings viewer.js src public"
+    "lint": "oxlint --deny-warnings viewer.js src public"
   },
   "engines": {
     "node": ">=22"
